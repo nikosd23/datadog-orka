@@ -1,20 +1,11 @@
-const { getLogger } = require('@workablehr/orka');
+
+const logger = require('@workablehr/orka').getLogger('[Routes]');
 
 module.exports = {
-  get: {
-    '/test': async (ctx, next) => (ctx.body = 'ok'),
-    '/testPolicy': async (ctx, next) => (ctx.body = 'ok'),
-    '/log': async (ctx, next) => {
-      getLogger('log').info('%s world', 'hello', { context: 'foo' });
-      ctx.body = 'logged';
-    },
-    '/logError': async (ctx, next) => {
-      getLogger('log').error(new Error('test'), 'this was a test error', { context: 'foo' });
-      ctx.throw(new Error('test'), 505);
-    },
-    '/api/allowAll/accounts/:subdomain': async (ctx, next) => (ctx.body = 'ok')
-  },
   post: {
-    '/test': async (ctx, next) => (ctx.body = 'ok')
+    '/test': async (ctx, next) => {
+        logger.info(`We received a special request with ${ctx.request.body.bodyAttributeA}, ${ctx.request.body.bodyAttributeB}}`);
+        return ctx.body = 'ok';
   }
+}
 };

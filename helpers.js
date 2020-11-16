@@ -1,4 +1,4 @@
-module.exports = {
+const Helpers = {
     isSpecificRequest: ctx => {
         const { bodyAttributeA, bodyAttributeB } = Object.assign({}, ctx && ctx.request.body, ctx && ctx.request.query);
         return !!bodyAttributeA || !!bodyAttributeB;
@@ -7,9 +7,12 @@ module.exports = {
         return req.headers[name.toLowerCase()];
     },
     getAccountId: ctx => {
-        return this.header(ctx, 'account_id');
+        return Helpers.header(ctx, 'account_id');
     },
     getUserId: ctx => {
-        return this.header(ctx, 'user_id');
+        return Helpers.header(ctx, 'user_id');
     }
 }
+
+
+module.exports = Helpers;
