@@ -1,7 +1,7 @@
 module.exports = {
-    isSearch: ctx => {
-        const { skills, name } = Object.assign({}, ctx && ctx.request.body, ctx && ctx.request.query);
-        return !!skills || !!name;
+    isSpecificRequest: ctx => {
+        const { bodyAttributeA, bodyAttributeB } = Object.assign({}, ctx && ctx.request.body, ctx && ctx.request.query);
+        return !!bodyAttributeA || !!bodyAttributeB;
     },
     header: (req, name) => {
         return req.headers[name.toLowerCase()];

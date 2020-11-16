@@ -19,7 +19,7 @@ const w = orka({
             blacklist: ['/health'],
             hooks: {
                 request: (span, req, res) => {
-                    // if (Helpers.isSearch(ctx)) {
+                    // if (Helpers.isSpecificRequest(ctx)) {
                     //   Send info as ddTag from ctx.request.body
                     // }
                     Metrics.ddTag('user_id', Helpers.getUserId(req), span);
